@@ -7,6 +7,7 @@ import com.trepcsi.mariobros.screens.PlayScreen;
 public class MarioBros extends Game {
     public static final int V_WIDTH = 400;
     public static final int V_HEIGHT = 208;
+    public static final float PPM = 100f; //pixels per meter
 
     public SpriteBatch batch; //only 1 batch allowed (memory) in the whole game!
 
