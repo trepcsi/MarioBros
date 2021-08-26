@@ -5,13 +5,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -23,6 +20,8 @@ import com.trepcsi.mariobros.tools.B2WorldCreator;
 
 public class PlayScreen implements Screen {
     private MarioBros game;
+    private TextureAtlas atlas;
+
     private OrthographicCamera gameCam;
     private Viewport gamePort;
     private Hud hud;
@@ -38,6 +37,8 @@ public class PlayScreen implements Screen {
 
     public PlayScreen(MarioBros game) {
         this.game = game;
+        atlas = new TextureAtlas("Mario_and_Enemies.pack");
+
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(MarioBros.V_WIDTH / MarioBros.PPM, MarioBros.V_HEIGHT / MarioBros.PPM, gameCam);
         hud = new Hud(game.batch);
@@ -53,7 +54,7 @@ public class PlayScreen implements Screen {
 
         new B2WorldCreator(world, map);
 
-        player = new Mario(world);
+        player = new Mario(world, this);
     }
 
     public void handleInput(float dt) {
@@ -73,10 +74,15 @@ public class PlayScreen implements Screen {
 
         world.step(1 / 60f, 6, 2); //read more
 
+        player.update(dt);
         gameCam.position.x = player.b2body.getPosition().x;
 
         gameCam.update();
         renderer.setView(gameCam);
+    }
+
+    public TextureAtlas getAtlas() {
+        return atlas;
     }
 
     @Override
@@ -94,6 +100,11 @@ public class PlayScreen implements Screen {
         renderer.render();
 
         b2dr.render(world, gameCam.combined);
+
+        game.batch.setProjectionMatrix(gameCam.combined);
+        game.batch.begin();
+        player.draw(game.batch);
+        game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
