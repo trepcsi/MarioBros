@@ -2,6 +2,8 @@ package com.trepcsi.mariobros.tools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
+import com.trepcsi.mariobros.MarioBros;
+import com.trepcsi.mariobros.sprites.Enemy;
 import com.trepcsi.mariobros.sprites.InteractiveTileObject;
 
 public class WorldContactListener implements ContactListener {
@@ -11,6 +13,8 @@ public class WorldContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
+        int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
+
         if (fixA.getUserData() == "head" || fixB.getUserData() == "head") {
             Fixture head = fixA.getUserData() == "head" ? fixA : fixB;
             Fixture object = head == fixA ? fixB : fixA;
@@ -18,6 +22,17 @@ public class WorldContactListener implements ContactListener {
             if (object.getUserData() != null && InteractiveTileObject.class.isAssignableFrom(object.getUserData().getClass())) {
                 ((InteractiveTileObject) object.getUserData()).onHeadHit();
             }
+        }
+
+        switch (cDef) {
+            case MarioBros.ENEMY_HEAD_BIT | MarioBros.MARIO_BIT:
+                if (fixA.getFilterData().categoryBits == MarioBros.ENEMY_HEAD_BIT) {
+                    ((Enemy) fixA.getUserData()).hitOnHead();
+                    break;
+                } else if (fixB.getFilterData().categoryBits == MarioBros.ENEMY_HEAD_BIT) {
+                    ((Enemy) fixB.getUserData()).hitOnHead();
+                    break;
+                }
         }
     }
 
