@@ -3,6 +3,7 @@ package com.trepcsi.mariobros.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -34,6 +35,8 @@ public class PlayScreen implements Screen {
     private World world;
     private Box2DDebugRenderer b2dr;
 
+    private Music music;
+
     Mario player;
 
     public PlayScreen(MarioBros game) {
@@ -53,11 +56,15 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10f), true);
         b2dr = new Box2DDebugRenderer();
 
-        new B2WorldCreator(world, map, game.batch);
+        new B2WorldCreator(world, map, game.batch, game.manager);
 
         player = new Mario(world, this);
 
         world.setContactListener(new WorldContactListener());
+
+        music = game.manager.get("audio/music/mario_music.ogg", Music.class);
+        music.setLooping(true);
+        music.play();
     }
 
     public void handleInput(float dt) {

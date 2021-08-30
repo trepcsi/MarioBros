@@ -1,6 +1,8 @@
 package com.trepcsi.mariobros.sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
@@ -9,9 +11,9 @@ import com.trepcsi.mariobros.MarioBros;
 
 public class Brick extends InteractiveTileObject {
 
-    public Brick(World world, TiledMap map, Rectangle bounds, SpriteBatch sb) {
+    public Brick(World world, TiledMap map, Rectangle bounds, SpriteBatch sb, AssetManager manager) {
 
-        super(world, map, bounds, sb);
+        super(world, map, bounds, sb, manager);
         fixture.setUserData(this);
         setCategoryFilter(MarioBros.BRICK_BIT);
     }
@@ -21,5 +23,6 @@ public class Brick extends InteractiveTileObject {
         setCategoryFilter(MarioBros.DESTROYED_BIT);
         getCell().setTile(null);
         hud.addScore(100);
+        manager.get("audio/sounds/breakblock.wav", Sound.class).play();
     }
 }

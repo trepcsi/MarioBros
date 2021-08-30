@@ -1,5 +1,7 @@
 package com.trepcsi.mariobros.sprites;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -19,11 +21,13 @@ public abstract class InteractiveTileObject {
     protected Fixture fixture;
 
     protected Hud hud;
+    protected AssetManager manager;
 
-    public InteractiveTileObject(World world, TiledMap map, Rectangle bounds, SpriteBatch sb) {
+    public InteractiveTileObject(World world, TiledMap map, Rectangle bounds, SpriteBatch sb, AssetManager manager) {
         this.world = world;
         this.map = map;
         this.bounds = bounds;
+        this.manager = manager;
         this.hud = Hud.getInstance(sb);
 
         BodyDef bdef = new BodyDef();
@@ -38,6 +42,8 @@ public abstract class InteractiveTileObject {
         shape.setAsBox(bounds.getWidth() / 2 / MarioBros.PPM, bounds.getHeight() / 2 / MarioBros.PPM);
         fdef.shape = shape;
         fixture = body.createFixture(fdef);
+
+
     }
 
     public abstract void onHeadHit();
