@@ -17,6 +17,7 @@ import com.trepcsi.mariobros.MarioBros;
 import com.trepcsi.mariobros.scenes.Hud;
 import com.trepcsi.mariobros.sprites.Mario;
 import com.trepcsi.mariobros.tools.B2WorldCreator;
+import com.trepcsi.mariobros.tools.WorldContactListener;
 
 public class PlayScreen implements Screen {
     private MarioBros game;
@@ -55,6 +56,8 @@ public class PlayScreen implements Screen {
         new B2WorldCreator(world, map);
 
         player = new Mario(world, this);
+
+        world.setContactListener(new WorldContactListener());
     }
 
     public void handleInput(float dt) {
