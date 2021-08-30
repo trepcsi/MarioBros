@@ -1,11 +1,13 @@
 package com.trepcsi.mariobros.sprites;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.trepcsi.mariobros.MarioBros;
+import com.trepcsi.mariobros.scenes.Hud;
 
 public abstract class InteractiveTileObject {
     protected World world;
@@ -16,10 +18,13 @@ public abstract class InteractiveTileObject {
 
     protected Fixture fixture;
 
-    public InteractiveTileObject(World world, TiledMap map, Rectangle bounds) {
+    protected Hud hud;
+
+    public InteractiveTileObject(World world, TiledMap map, Rectangle bounds, SpriteBatch sb) {
         this.world = world;
         this.map = map;
         this.bounds = bounds;
+        this.hud = Hud.getInstance(sb);
 
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();

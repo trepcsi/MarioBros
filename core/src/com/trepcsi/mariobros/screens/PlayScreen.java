@@ -42,7 +42,7 @@ public class PlayScreen implements Screen {
 
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(MarioBros.V_WIDTH / MarioBros.PPM, MarioBros.V_HEIGHT / MarioBros.PPM, gameCam);
-        hud = new Hud(game.batch);
+        hud = Hud.getInstance(game.batch);
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("level1-1.tmx");
@@ -53,7 +53,7 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10f), true);
         b2dr = new Box2DDebugRenderer();
 
-        new B2WorldCreator(world, map);
+        new B2WorldCreator(world, map, game.batch);
 
         player = new Mario(world, this);
 
@@ -78,6 +78,7 @@ public class PlayScreen implements Screen {
         world.step(1 / 60f, 6, 2); //read more
 
         player.update(dt);
+        hud.update(dt);
         gameCam.position.x = player.b2body.getPosition().x;
 
         gameCam.update();

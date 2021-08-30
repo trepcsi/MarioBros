@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.trepcsi.mariobros.MarioBros;
 
 public class Hud implements Disposable {
+    private static Hud single_instance = null;
+
     public Stage stage;
     private Viewport viewport;
 
@@ -27,7 +29,14 @@ public class Hud implements Disposable {
     Label worldLabel;
     Label marioLabel;
 
-    public Hud(SpriteBatch sb) {
+    public static Hud getInstance(SpriteBatch sb) {
+        if (single_instance == null) {
+            single_instance = new Hud(sb);
+        }
+        return single_instance;
+    }
+
+    private Hud(SpriteBatch sb) {
         worldTimer = 300;
         timeCount = 0;
         score = 0;
@@ -57,6 +66,20 @@ public class Hud implements Disposable {
         table.add(countdownLabel).expandX();
 
         stage.addActor(table);
+    }
+
+    public void update(float dt) {
+        timeCount += dt;
+        if (timeCount >= 1) {
+            worldTimer--;
+            countdownLabel.setText(String.format("%03d", worldTimer));
+            timeCount = 0;
+        }
+    }
+
+    public void addScore(int value) {
+        score += value;
+        scoreLabel.setText(String.format("%06d", score));
     }
 
     @Override
