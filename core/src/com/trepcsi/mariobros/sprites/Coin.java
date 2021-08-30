@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.trepcsi.mariobros.MarioBros;
+import com.trepcsi.mariobros.screens.PlayScreen;
 
 public class Coin extends InteractiveTileObject {
 
@@ -15,9 +16,9 @@ public class Coin extends InteractiveTileObject {
     private final int BLANK_COIN = 27 + 1; //tiled +1 because of indexing
     private boolean active = true;
 
-    public Coin(World world, TiledMap map, Rectangle bounds, SpriteBatch sb, AssetManager manager) {
+    public Coin(PlayScreen screen, Rectangle bounds) {
 
-        super(world, map, bounds, sb, manager);
+        super(screen, bounds);
         tileSet = map.getTileSets().getTileSet("tileset_gutter");
         fixture.setUserData(this);
         setCategoryFilter(MarioBros.COIN_BIT);

@@ -8,12 +8,13 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.trepcsi.mariobros.MarioBros;
+import com.trepcsi.mariobros.screens.PlayScreen;
 
 public class Brick extends InteractiveTileObject {
 
-    public Brick(World world, TiledMap map, Rectangle bounds, SpriteBatch sb, AssetManager manager) {
+    public Brick(PlayScreen screen, Rectangle bounds) {
 
-        super(world, map, bounds, sb, manager);
+        super(screen, bounds);
         fixture.setUserData(this);
         setCategoryFilter(MarioBros.BRICK_BIT);
     }

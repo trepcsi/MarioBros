@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.trepcsi.mariobros.MarioBros;
 import com.trepcsi.mariobros.scenes.Hud;
+import com.trepcsi.mariobros.screens.PlayScreen;
 
 public abstract class InteractiveTileObject {
     protected World world;
@@ -23,12 +24,12 @@ public abstract class InteractiveTileObject {
     protected Hud hud;
     protected AssetManager manager;
 
-    public InteractiveTileObject(World world, TiledMap map, Rectangle bounds, SpriteBatch sb, AssetManager manager) {
-        this.world = world;
-        this.map = map;
+    public InteractiveTileObject(PlayScreen screen, Rectangle bounds) {
+        this.world = screen.getWorld();
+        this.map = screen.getMap();
         this.bounds = bounds;
-        this.manager = manager;
-        this.hud = Hud.getInstance(sb);
+        this.manager = screen.getGame().manager;
+        this.hud = Hud.getInstance(screen.getGame().batch);
 
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();
