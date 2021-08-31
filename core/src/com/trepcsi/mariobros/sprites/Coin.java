@@ -27,11 +27,11 @@ public class Coin extends InteractiveTileObject {
     @Override
     public void onHeadHit() {
         if (!active) {
-            manager.get("audio/sounds/bump.wav", Sound.class).play();
+            manager.get("audio/sounds/bump.wav", Sound.class).play(.5f);
         } else {
             hud.addScore(200);
             getCell().setTile(tileSet.getTile(BLANK_COIN));
-            manager.get("audio/sounds/coin.wav", Sound.class).play();
+            manager.get("audio/sounds/coin.wav", Sound.class).play(.5f);
             active = false;
         }
 

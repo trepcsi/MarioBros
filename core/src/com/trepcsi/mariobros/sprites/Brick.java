@@ -24,6 +24,6 @@ public class Brick extends InteractiveTileObject {
         setCategoryFilter(MarioBros.DESTROYED_BIT);
         getCell().setTile(null);
         hud.addScore(100);
-        manager.get("audio/sounds/breakblock.wav", Sound.class).play();
+        manager.get("audio/sounds/breakblock.wav", Sound.class).play(.5f);
     }
 }

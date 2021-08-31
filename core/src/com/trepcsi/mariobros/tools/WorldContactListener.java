@@ -33,7 +33,18 @@ public class WorldContactListener implements ContactListener {
                     ((Enemy) fixB.getUserData()).hitOnHead();
                     break;
                 }
+            case MarioBros.ENEMY_BIT | MarioBros.OBJECT_BIT:
+                if (fixA.getFilterData().categoryBits == MarioBros.ENEMY_BIT) {
+                    ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
+                    break;
+                } else {
+                    ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
+                    break;
+                }
+            case MarioBros.MARIO_BIT | MarioBros.ENEMY_BIT:
+                Gdx.app.log("Mario", "DIED");
         }
+
     }
 
     @Override
