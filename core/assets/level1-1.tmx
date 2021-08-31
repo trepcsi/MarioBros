@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="101">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="105">
  <tileset firstgid="1" source="tileset_gutter.tsx"/>
  <layer id="2" name="background" width="240" height="13">
   <data encoding="base64" compression="zlib">
@@ -118,5 +118,11 @@
   <object id="98" x="2416" y="112" width="16" height="16"/>
   <object id="99" x="2448" y="112" width="16" height="16"/>
   <object id="100" x="179" y="-119"/>
+ </objectgroup>
+ <objectgroup id="8" name="goombas">
+  <object id="101" x="512" y="161" width="16" height="16"/>
+  <object id="102" x="704" y="160" width="16" height="16"/>
+  <object id="103" x="2448" y="160" width="16" height="16"/>
+  <object id="104" x="2592" y="160" width="16" height="16"/>
  </objectgroup>
 </map>

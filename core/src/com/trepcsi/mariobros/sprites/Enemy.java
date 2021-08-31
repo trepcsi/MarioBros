@@ -32,4 +32,6 @@ public abstract class Enemy extends Sprite {
     protected abstract void defineEnemy();
 
     public abstract void hitOnHead();
+
+    public abstract void update(float dt);
 }
