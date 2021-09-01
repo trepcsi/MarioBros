@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.trepcsi.mariobros.MarioBros;
 import com.trepcsi.mariobros.screens.PlayScreen;
+import com.trepcsi.mariobros.sprites.Mario;
 
 
 public abstract class Item extends Sprite {
@@ -46,5 +47,14 @@ public abstract class Item extends Sprite {
 
     public abstract void defineItem();
 
-    public abstract void use();
+    public abstract void use(Mario mario);
+
+    public void reverseVelocity(boolean x, boolean y) {
+        if (x) {
+            velocity.x = -velocity.x;
+        }
+        if (y) {
+            velocity.y = -velocity.y;
+        }
+    }
 }

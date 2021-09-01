@@ -3,7 +3,9 @@ package com.trepcsi.mariobros.tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
 import com.trepcsi.mariobros.MarioBros;
+import com.trepcsi.mariobros.sprites.Mario;
 import com.trepcsi.mariobros.sprites.enemies.Enemy;
+import com.trepcsi.mariobros.sprites.items.Item;
 import com.trepcsi.mariobros.sprites.tileobjects.InteractiveTileObject;
 
 public class WorldContactListener implements ContactListener {
@@ -47,6 +49,22 @@ public class WorldContactListener implements ContactListener {
             case MarioBros.ENEMY_BIT:
                 ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
                 ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
+            case MarioBros.ITEM_BIT | MarioBros.OBJECT_BIT:
+                if (fixA.getFilterData().categoryBits == MarioBros.ITEM_BIT) {
+                    ((Item) fixA.getUserData()).reverseVelocity(true, false);
+                    break;
+                } else {
+                    ((Item) fixB.getUserData()).reverseVelocity(true, false);
+                    break;
+                }
+            case MarioBros.ITEM_BIT | MarioBros.MARIO_BIT:
+                if (fixA.getFilterData().categoryBits == MarioBros.ITEM_BIT) {
+                    ((Item) fixA.getUserData()).use((Mario) fixB.getUserData());
+                    break;
+                } else {
+                    ((Item) fixB.getUserData()).use((Mario) fixA.getUserData());
+                    break;
+                }
         }
 
     }
