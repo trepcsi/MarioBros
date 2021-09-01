@@ -1,6 +1,5 @@
 package com.trepcsi.mariobros.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -17,8 +16,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.trepcsi.mariobros.MarioBros;
 import com.trepcsi.mariobros.scenes.Hud;
-import com.trepcsi.mariobros.sprites.Enemy;
-import com.trepcsi.mariobros.sprites.Goomba;
+import com.trepcsi.mariobros.sprites.enemies.Enemy;
 import com.trepcsi.mariobros.sprites.Mario;
 import com.trepcsi.mariobros.tools.B2WorldCreator;
 import com.trepcsi.mariobros.tools.WorldContactListener;

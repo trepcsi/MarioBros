@@ -1,10 +1,8 @@
-package com.trepcsi.mariobros.sprites;
+package com.trepcsi.mariobros.sprites.enemies;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g3d.particles.influencers.RegionInfluencer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -13,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.trepcsi.mariobros.MarioBros;
 import com.trepcsi.mariobros.screens.PlayScreen;
+import com.trepcsi.mariobros.sprites.enemies.Enemy;
 
 public class Goomba extends Enemy {
 

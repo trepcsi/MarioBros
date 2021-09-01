@@ -10,9 +10,9 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.trepcsi.mariobros.MarioBros;
 import com.trepcsi.mariobros.screens.PlayScreen;
-import com.trepcsi.mariobros.sprites.Brick;
-import com.trepcsi.mariobros.sprites.Coin;
-import com.trepcsi.mariobros.sprites.Goomba;
+import com.trepcsi.mariobros.sprites.tileobjects.Brick;
+import com.trepcsi.mariobros.sprites.tileobjects.Coin;
+import com.trepcsi.mariobros.sprites.enemies.Goomba;
 
 public class B2WorldCreator {
     private Array<Goomba> goombas;

@@ -1,4 +1,4 @@
-package com.trepcsi.mariobros.sprites;
+package com.trepcsi.mariobros.sprites.enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;

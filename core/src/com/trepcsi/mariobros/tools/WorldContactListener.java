@@ -3,8 +3,8 @@ package com.trepcsi.mariobros.tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
 import com.trepcsi.mariobros.MarioBros;
-import com.trepcsi.mariobros.sprites.Enemy;
-import com.trepcsi.mariobros.sprites.InteractiveTileObject;
+import com.trepcsi.mariobros.sprites.enemies.Enemy;
+import com.trepcsi.mariobros.sprites.tileobjects.InteractiveTileObject;
 
 public class WorldContactListener implements ContactListener {
 
