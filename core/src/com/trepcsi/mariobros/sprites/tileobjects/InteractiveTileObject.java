@@ -16,6 +16,7 @@ public abstract class InteractiveTileObject {
     protected TiledMapTile tile;
     protected Rectangle bounds;
     protected Body body;
+    protected PlayScreen screen;
 
     protected Fixture fixture;
 
@@ -23,6 +24,7 @@ public abstract class InteractiveTileObject {
     protected AssetManager manager;
 
     public InteractiveTileObject(PlayScreen screen, Rectangle bounds) {
+        this.screen = screen;
         this.world = screen.getWorld();
         this.map = screen.getMap();
         this.bounds = bounds;
