@@ -1,6 +1,8 @@
 package com.trepcsi.mariobros.sprites.tileobjects;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -17,17 +19,19 @@ public abstract class InteractiveTileObject {
     protected Rectangle bounds;
     protected Body body;
     protected PlayScreen screen;
+    protected MapObject object;
 
     protected Fixture fixture;
 
     protected Hud hud;
     protected AssetManager manager;
 
-    public InteractiveTileObject(PlayScreen screen, Rectangle bounds) {
+    public InteractiveTileObject(PlayScreen screen, MapObject object) {
+        this.object = object;
         this.screen = screen;
         this.world = screen.getWorld();
         this.map = screen.getMap();
-        this.bounds = bounds;
+        this.bounds = ((RectangleMapObject) object).getRectangle();
         this.manager = screen.getGame().manager;
         this.hud = Hud.getInstance(screen.getGame().batch);
 
